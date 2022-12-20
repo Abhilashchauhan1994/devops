@@ -1,0 +1,36 @@
+Vagrant.configure("2") do |config|
+    config.hostmanager.enable=true
+    config.hostmanager.manage_host =true
+
+##ansible_controller##
+    config.vm.define "ansimaster" do |ansimaster|
+        ansimaster.vm.box ="geerlingguy/centos7"
+        ansimaster.vm.host_name ="ansimaster"
+        ansimaster.vm.network "private_network" ,ip: "192.168.56.15"
+        ansimaster.vm.provision "shell", path: "ansible.sh"
+
+    end
+
+##ansible_client##
+    config.vm.define "ac01" do |ac01|
+        ac01.vm.box ="geerlingguy/centos7"
+        ac01.vm.host_name ="ac01"
+        ac01.vm.network "private_network" ,ip: "192.168.56.16"
+
+    end 
+
+    config.vm.define "ac02" do |ac02|
+        ac02.vm.box ="geerlingguy/centos7"
+        ac02.vm.host_name ="ac02"
+        ac02.vm.network "private_network" ,ip: "192.168.56.17"
+
+    end 
+
+    config.vm.define "ac03" do |ac03|
+        ac03.vm.box ="geerlingguy/centos7"
+        ac03.vm.host_name ="ac03"
+        ac03.vm.network "private_network" ,ip: "192.168.56.18"
+
+    end
+
+    end
