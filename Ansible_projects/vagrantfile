@@ -10,11 +10,21 @@ Vagrant.configure("2") do |config|
         ansimaster.vm.provision "shell", path: "ansible.sh"
 
     end
+#Jenkins_master
+    config.vm.define "jenkins" do |jenkins|
+        jenkins.vm.box = "alvistack/ubuntu-22.04"
+        jenkins.vm.host_name ="jenkinsmaster"
+        jenkins.vm.boot_timeout=500
+        jenkins.vm.network "private_network" ,ip: "192.168.56.20"
+        jenkins.vm.provision "shell", path: "jenkins_ubuntu.sh"
+
+    end
 
 ##ansible_client##
     config.vm.define "ac01" do |ac01|
         ac01.vm.box ="geerlingguy/centos7"
         ac01.vm.host_name ="ac01"
+        ac01.vm.boot_timeout=500
         ac01.vm.network "private_network" ,ip: "192.168.56.16"
 
     end 
@@ -22,6 +32,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "ac02" do |ac02|
         ac02.vm.box ="geerlingguy/centos7"
         ac02.vm.host_name ="ac02"
+        ac02.vm.boot_timeout=500
         ac02.vm.network "private_network" ,ip: "192.168.56.17"
 
     end 
@@ -29,6 +40,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "ac03" do |ac03|
         ac03.vm.box ="geerlingguy/centos7"
         ac03.vm.host_name ="ac03"
+        ac03.vm.boot_timeout=500
         ac03.vm.network "private_network" ,ip: "192.168.56.18"
 
     end

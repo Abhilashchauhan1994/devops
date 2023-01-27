@@ -1,0 +1,11 @@
+#create a file using ansible
+#requirements file name = userinfo  destination= /root/userinfo.txt
+
+---
+- name: create a file
+  hosts: all
+  tasks:
+    - name: create userinfo.txt
+      file:
+      path: /root/userinfo.txt
+      state: touch

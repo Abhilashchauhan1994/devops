@@ -1,0 +1,26 @@
+#command to check connectivity
+ansible all -m ping
+
+#copy command to copy a file from master node to managed nodes.
+ansible all -m copy -a "src=test.txt dest=/tmp"
+
+#command to transfer content from ansibale master node to managed nodes
+ansible all -m copy -a "content='message from master. please read it'   dest=/tmp/masters-message.txt"
+
+#command to take a backup of file before editing it from ansible master
+ansible all -m copy -a "content='Message from master. Please read it'   dest=/tmp/masters-message.txt backup=yes"
+
+#command to create file using ad-hoc command
+ansible all -m file -a "path=/tmp/master.txt state=touch"
+
+#command to delete a file 
+ansible all -m file -a "path=/tmp/master_old.txt state=absent"
+
+#command to change permission 
+ansible all -m file -a "path=/tmp/master_old.txt state=touch mode=0777"
+
+#command to create directory on managed nodes 
+ansible all -m file -a "path=/tmp/master state=directory"
+
+#command to create file using sudo permission
+ansible all -m file -a "path=/etc/test.txt state=touch" -b
